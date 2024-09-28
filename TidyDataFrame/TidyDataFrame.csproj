@@ -6,4 +6,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Analysis" Version="0.21.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Datasets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Datasets\mtcars.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Datasets\relig_income.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
