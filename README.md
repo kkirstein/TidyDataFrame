@@ -12,3 +12,9 @@ Tidy data is data where:
 3. Each value is a cell; each cell is a single value.
 
 Tidy data describes a standard way of storing data.
+
+
+## Microsoft.Data.Analysis
+
+This library builds upon the data frame implementation of `Microsoft.Data.Analysis`, whose documentation can be found [here](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.analysis?view=ml-dotnet-preview).
+
