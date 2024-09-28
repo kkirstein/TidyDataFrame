@@ -1,6 +1,7 @@
 # TidyDataFrame
 
-A wrapper and extension(s) around `Microsoft.Data.Analysis` package to support tidy data strategies, like in the `tidyverse` packages for `R`.
+A wrapper and extension(s) around `Microsoft.Data.Analysis` package to support tidy data handling, like in the `tidyverse` packages for `R`.
+See also [tidyverse](https://www.tidyverse.org/) and [tidyr package](https://tidyr.tidyverse.org/).
 
 ## Definition of Tidy Data
 
