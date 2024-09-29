@@ -13,8 +13,14 @@ namespace TidyDataFrame
     {
         #region public properties
 
+        /// <summary>
+        /// Column name and type specification, extracted from TDataRecord
+        /// </summary>
         public Dictionary<string, PropertyInfo> ColumnSpec { get; }
 
+        /// <summary>
+        /// Count of the currently added data records
+        /// </summary>
         public int Count { get { return _records.Count; } }
 
         #endregion
@@ -23,12 +29,15 @@ namespace TidyDataFrame
 
         private List<TDataRecord> _records;
 
-        private bool _frozen;
+        //private bool _frozen;
 
         #endregion
 
         #region constructor
 
+        /// <summary>
+        /// Instantiates a DataFrameBuilder for the given data record type
+        /// </summary>
         public DataFrameBuilder()
         {
             var dataFields = typeof(TDataRecord).GetProperties();
@@ -42,7 +51,7 @@ namespace TidyDataFrame
             }
 
             _records = new List<TDataRecord>();
-            _frozen = false;
+            //_frozen = false;
         }
 
 
@@ -50,22 +59,35 @@ namespace TidyDataFrame
 
         #region public members
 
+        /// <summary>
+        /// Add a single data record to the builder
+        /// </summary>
+        /// <inheritdoc/>
         public void Add(TDataRecord record)
         {
             _records.Add(record);
         }
 
 
+        /// <summary>
+        /// Add a collection of data records to the builder
+        /// </summary>
+        /// <inheritdoc/>
         public void Add(ICollection<TDataRecord> records)
         {
             _records = _records.Concat(records).ToList();
         }
 
-        public void Freeze()
-        {
-            _frozen = true;
-        }
+        //public void Freeze()
+        //{
+        //    _frozen = true;
+        //}
 
+        /// <summary>
+        /// Converts builder to a DataFrame.
+        /// </summary>
+        /// <inheritdoc/>
+        /// <exception cref="ApplicationException">Thrown if unsupperted data types are provided</exception>
         public DataFrame ToDataFrame()
         {
             var numCols = ColumnSpec.Count;
