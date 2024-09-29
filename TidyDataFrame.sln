@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Extensions", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrameTests", "TidyDataFrameTests\TidyDataFrameTests.csproj", "{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrameBenchmark", "TidyDataFrameBenchmark\TidyDataFrameBenchmark.csproj", "{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
