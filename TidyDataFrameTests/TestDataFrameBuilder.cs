@@ -56,9 +56,9 @@ namespace TidyDataFrameTests
 
             var records = new List<MyDataRecord>
             {
-                new MyDataRecord(13.4, "A", 13),
-                new MyDataRecord(17.8, "B", 14),
-                new MyDataRecord(24.6, "C", 15),
+                new(13.4, "A", 13),
+                new(17.8, "B", 14),
+                new(24.6, "C", 15),
             };
 
             Assert.AreEqual(0, builder.Count);
@@ -73,10 +73,10 @@ namespace TidyDataFrameTests
 
             var records = new List<MyDataRecord>
             {
-                new MyDataRecord(13.4, "A", 13),
-                new MyDataRecord(17.8, "B", 14),
-                new MyDataRecord(24.6, "C", 15),
-                new MyDataRecord(42.0, "D", 16),
+                new(13.4, "A", 13),
+                new(17.8, "B", 14),
+                new(24.6, "C", 15),
+                new(42.0, "D", 16),
             };
             builder.Add(records);
 
@@ -99,10 +99,10 @@ namespace TidyDataFrameTests
 
             var records = new List<MyNullableDataRecord>
             {
-                new MyNullableDataRecord(13.4, "A", 13),
-                new MyNullableDataRecord(null, "B", 14),
-                new MyNullableDataRecord(24.6, null, 15),
-                new MyNullableDataRecord(42.0, "D", null),
+                new(13.4, "A", 13),
+                new(null, "B", 14),
+                new(24.6, null, 15),
+                new(42.0, "D", null),
             };
             builder.Add(records);
 
