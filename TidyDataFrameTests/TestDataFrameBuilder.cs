@@ -89,6 +89,10 @@ namespace TidyDataFrameTests
             Assert.IsInstanceOfType(df["Name"], typeof(StringDataFrameColumn));
             Assert.IsInstanceOfType(df["Value"], typeof(DoubleDataFrameColumn));
             Assert.IsInstanceOfType(df["Id"], typeof(Int32DataFrameColumn));
+
+            Assert.AreEqual(13.4, df["Value"][0]);
+            Assert.AreEqual("C", df["Name"][2]);
+            Assert.AreEqual(16, df["Id"][3]);
         }
 
 
@@ -115,6 +119,13 @@ namespace TidyDataFrameTests
             Assert.IsInstanceOfType(df["Name"], typeof(StringDataFrameColumn));
             Assert.IsInstanceOfType(df["Value"], typeof(DoubleDataFrameColumn));
             Assert.IsInstanceOfType(df["Id"], typeof(Int32DataFrameColumn));
+
+            Assert.AreEqual(13.4, df["Value"][0]);
+            Assert.AreEqual("B", df["Name"][1]);
+            Assert.AreEqual(15, df["Id"][2]);
+            Assert.IsNull(df["Value"][1]);
+            Assert.IsNull(df["Name"][2]);
+            Assert.IsNull(df["Id"][3]);
         }
 
     }

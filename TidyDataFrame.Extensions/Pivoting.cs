@@ -9,12 +9,12 @@ namespace TidyDataFrame.Extensions
 
         public static DataFrame PivotLonger(this DataFrame df, List<string> cols, string namesTo = "Names", string valuesTo = "Values")
         {
-            throw new NotImplementedException();
+            return TidyDataFrame.Pivoting.ToLonger(df, cols, namesTo, valuesTo);
         }
 
         public static DataFrame PivotWider(this DataFrame df, List<string> cols, string namesFrom)
         {
-            throw new NotImplementedException();
+            return TidyDataFrame.Pivoting.ToWider(df, cols, namesFrom);
         }
     }
 

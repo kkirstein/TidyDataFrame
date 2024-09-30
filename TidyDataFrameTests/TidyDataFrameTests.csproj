@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TidyDataFrame.Examples\TidyDataFrame.Examples.csproj" />
     <ProjectReference Include="..\TidyDataFrame\TidyDataFrame.csproj" />
   </ItemGroup>
 

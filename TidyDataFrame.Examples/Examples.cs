@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.Analysis;
 
-namespace TidyDataFrame
+namespace TidyDataFrame.Examples
 {
-    public static class Examples
+    public static class Df
     {
         public static DataFrame ReligIncome
         {

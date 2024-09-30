@@ -1,5 +1,5 @@
 
-using TidyDataFrame;
+using TidyDataFrame.Examples;
 
 namespace TidyDataFrameTests
 {
@@ -9,7 +9,7 @@ namespace TidyDataFrameTests
         [TestMethod]
         public void TestReligIncomeDataset()
         {
-            var df = Examples.ReligIncome;
+            var df = Df.ReligIncome;
 
             Assert.IsNotNull(df);
             Assert.AreEqual(12, df.Columns.Count);
@@ -38,7 +38,7 @@ namespace TidyDataFrameTests
         [TestMethod]
         public void TestMtCarsDataset()
         {
-            var df = Examples.MtCars;
+            var df = Df.MtCars;
 
             Assert.IsNotNull(df);
             Assert.AreEqual(12, df.Columns.Count);
