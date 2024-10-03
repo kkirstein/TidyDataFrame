@@ -22,10 +22,13 @@ namespace TidyDataFrame
                     throw new InvalidDataException($"{colName} does not exist in data frame ({colNames})");
                 }
             }
+            var selectedCols = Column.Take(df, cols);
+
 
             // TODO: compile remaining columns
+            var remainingCols = Column.Drop(df, cols);
             var longDataCount = cols.Count * rowCount;
-            var remainingCols = new List<DataFrameColumn>();
+            //var remainingColsLong = new List<DataFrameColumn>();
 
             // TODO: check column types are compatible
             var coercedType = typeof(Nullable<double>);
@@ -43,7 +46,7 @@ namespace TidyDataFrame
 
             var nameColumn = new StringDataFrameColumn(namesTo, longDataCount);
 
-            var longDf = new DataFrame(remainingCols);
+            var longDf = new DataFrame(remainingCols.Columns);
             switch (coercedType)
             {
                 case Type _ when coercedType == typeof(double) || coercedType == typeof(double?):
