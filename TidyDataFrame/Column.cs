@@ -47,6 +47,5 @@ namespace TidyDataFrame
             var selectedCols = df.Columns.Where(c => columnNames.Contains(c.Name));
             return new DataFrame(selectedCols);
         }
-
     }
 }
