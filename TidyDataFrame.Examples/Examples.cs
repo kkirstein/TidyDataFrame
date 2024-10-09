@@ -16,7 +16,11 @@ namespace TidyDataFrame.Examples
         {
             get
             {
-                return DataFrame.LoadCsv(""".\Datasets\mtcars.csv""");
+                return DataFrame.LoadCsv(""".\Datasets\mtcars.csv""",
+                    dataTypes:
+                        [typeof(string), typeof(float), typeof(int), typeof(float),
+                        typeof(int), typeof(float), typeof(float), typeof(float),
+                        typeof(int), typeof(int), typeof(int), typeof(int)]);
             }
         }
     }

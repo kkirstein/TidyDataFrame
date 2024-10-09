@@ -31,11 +31,23 @@ namespace TidyDataFrame
             {
                 Type t when t == typeof(string) => col switch
                 {
+                    UInt16DataFrameColumn _ => new CoerceTo(typeof(string)),
+                    UInt32DataFrameColumn _ => new CoerceTo(typeof(string)),
+                    UInt64DataFrameColumn _ => new CoerceTo(typeof(string)),
+                    Int32DataFrameColumn _ => new CoerceTo(typeof(string)),
+                    Int64DataFrameColumn _ => new CoerceTo(typeof(string)),
+                    SingleDataFrameColumn _ => new CoerceTo(typeof(string)),
+                    DoubleDataFrameColumn _ => new CoerceTo(typeof(string)),
                     StringDataFrameColumn _ => new TypeMatch(typeof(string)),
                     _ => new CoerceTo(typeof(string)),
                 },
                 Type t when t == typeof(float) => col switch
                 {
+                    UInt16DataFrameColumn _ => new TypeIncompatible(),
+                    UInt32DataFrameColumn _ => new TypeIncompatible(),
+                    UInt64DataFrameColumn _ => new TypeIncompatible(),
+                    Int32DataFrameColumn _ => new TypeIncompatible(),
+                    Int64DataFrameColumn _ => new TypeIncompatible(),
                     SingleDataFrameColumn _ => new TypeMatch(typeof(float)),
                     DoubleDataFrameColumn _ => new CoerceTo(typeof(double)),
                     StringDataFrameColumn _ => new CoerceTo(typeof(string)),
@@ -43,15 +55,42 @@ namespace TidyDataFrame
                 },
                 Type t when t == typeof(double) => col switch
                 {
+                    UInt16DataFrameColumn _ => new TypeIncompatible(),
+                    UInt32DataFrameColumn _ => new TypeIncompatible(),
+                    UInt64DataFrameColumn _ => new TypeIncompatible(),
+                    Int32DataFrameColumn _ => new TypeIncompatible(),
+                    Int64DataFrameColumn _ => new TypeIncompatible(),
                     SingleDataFrameColumn _ => new CoerceTo(typeof(double)),
                     DoubleDataFrameColumn _ => new TypeMatch(typeof(double)),
+                    StringDataFrameColumn _ => new CoerceTo(typeof(string)),
+                    Object other => throw new ApplicationException($"Column type {other.GetType()} cannot be coerced to double")
+                },
+                Type t when t == typeof(System.Int32) => col switch
+                {
+                    UInt16DataFrameColumn _ => new TypeMatch(typeof(System.Int32)),
+                    UInt32DataFrameColumn _ => new CoerceTo(typeof(System.UInt32)),
+                    UInt64DataFrameColumn _ => new CoerceTo(typeof(System.UInt64)),
+                    Int32DataFrameColumn _ => new TypeMatch(typeof(System.Int32)),
+                    Int64DataFrameColumn _ => new TypeMatch(typeof(System.Int64)),
+                    SingleDataFrameColumn _ => new TypeIncompatible(),
+                    DoubleDataFrameColumn _ => new TypeIncompatible(),
+                    StringDataFrameColumn _ => new CoerceTo(typeof(string)),
+                    Object other => throw new ApplicationException($"Column type {other.GetType()} cannot be coerced to double")
+                },
+                Type t when t == typeof(System.Int64) => col switch
+                {
+                    UInt16DataFrameColumn _ => new TypeMatch(typeof(System.Int64)),
+                    UInt32DataFrameColumn _ => new TypeMatch(typeof(System.Int64)),
+                    UInt64DataFrameColumn _ => new CoerceTo(typeof(System.UInt64)),
+                    Int32DataFrameColumn _ => new TypeMatch(typeof(System.Int64)),
+                    Int64DataFrameColumn _ => new TypeMatch(typeof(System.Int64)),
+                    SingleDataFrameColumn _ => new TypeIncompatible(),
+                    DoubleDataFrameColumn _ => new TypeIncompatible(),
                     StringDataFrameColumn _ => new CoerceTo(typeof(string)),
                     Object other => throw new ApplicationException($"Column type {other.GetType()} cannot be coerced to double")
                 },
                 _ => throw new ApplicationException("Type {nameof(t)} not supported")
             };
         }
-
     }
-
 }
