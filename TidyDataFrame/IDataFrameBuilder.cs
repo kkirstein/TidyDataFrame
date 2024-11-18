@@ -4,6 +4,11 @@ namespace TidyDataFrame
     public interface IDataFrameBuilder<TDataRecord>
     {
         /// <summary>
+        /// Column names and type specification
+        /// </summary>
+        public Dictionary<string, Type> ColumnSpec { get; }
+
+        /// <summary>
         /// Add a single data record to the builder
         /// </summary>
         /// <param name="record">Data record to be added</param>

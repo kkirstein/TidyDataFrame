@@ -27,9 +27,9 @@ namespace TidyDataFrameTests
 
             var colSpec = builder.ColumnSpec;
             Assert.IsNotNull(colSpec);
-            Assert.AreEqual(typeof(string), colSpec["Name"].PropertyType);
-            Assert.AreEqual(typeof(double), colSpec["Value"].PropertyType);
-            Assert.AreEqual(typeof(int), colSpec["Id"].PropertyType);
+            Assert.AreEqual(typeof(string), colSpec["Name"]);
+            Assert.AreEqual(typeof(double), colSpec["Value"]);
+            Assert.AreEqual(typeof(int), colSpec["Id"]);
         }
 
         [TestMethod]

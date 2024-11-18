@@ -16,7 +16,10 @@ namespace TidyDataFrame
         /// <summary>
         /// Column name and type specification, extracted from TDataRecord
         /// </summary>
-        public Dictionary<string, PropertyInfo> ColumnSpec { get; }
+        public Dictionary<string, Type> ColumnSpec
+        {
+            get { return _columns.ToDictionary(x => x.Key, x => x.Value.PropertyType); }
+        }
 
         /// <summary>
         /// Count of the currently added data records
@@ -28,6 +31,7 @@ namespace TidyDataFrame
         #region private properties
 
         private List<TDataRecord> _records;
+        private Dictionary<string, PropertyInfo> _columns;
 
         //private bool _frozen;
 
@@ -42,12 +46,12 @@ namespace TidyDataFrame
         {
             var dataFields = typeof(TDataRecord).GetProperties();
 
-            ColumnSpec = new Dictionary<string, PropertyInfo>(dataFields.Length);
+            _columns = new Dictionary<string, PropertyInfo>(dataFields.Length);
             foreach (var field in dataFields)
             {
                 var fieldName = field.Name;
                 var fieldType = field.PropertyType;
-                ColumnSpec[fieldName] = field;
+                _columns[fieldName] = field;
             }
 
             _records = new List<TDataRecord>();
@@ -87,13 +91,13 @@ namespace TidyDataFrame
         /// Converts builder to a DataFrame.
         /// </summary>
         /// <inheritdoc/>
-        /// <exception cref="ApplicationException">Thrown if unsupperted data types are provided</exception>
+        /// <exception cref="InvalidDataTypeException">Thrown if unsupperted data types are provided</exception>
         public DataFrame ToDataFrame()
         {
             var numCols = ColumnSpec.Count;
             var cols = new List<DataFrameColumn>(numCols);
 
-            foreach (var column in ColumnSpec)
+            foreach (var column in _columns)
             {
                 var name = column.Key;
                 var prop = column.Value;
@@ -114,7 +118,7 @@ namespace TidyDataFrame
                         cols.Add(_intCol);
                         break;
                     default:
-                        throw new ApplicationException($"Unsupported type {nameof(type)}");
+                        throw new InvalidDataTypeException($"Unsupported type {nameof(type)}");
                 }
             }
 
