@@ -14,7 +14,7 @@ namespace TidyDataFrame
             var rowCount = df.Rows.Count;
             var colNames = df.Columns.Select(c => c.Name).ToList();
 
-            // TODO: check cols are valid
+            // check cols are valid
             foreach (var colName in cols)
             {
                 if (!colNames.Contains(colName))
@@ -22,49 +22,70 @@ namespace TidyDataFrame
                     throw new InvalidDataException($"{colName} does not exist in data frame ({colNames})");
                 }
             }
-            var selectedCols = Column.Take(df, cols);
 
+            // TODO: check type compatibility
+            // ..
 
-            // TODO: compile remaining columns
-            var remainingCols = Column.Drop(df, cols);
-            var longDataCount = cols.Count * rowCount;
-            //var remainingColsLong = new List<DataFrameColumn>();
+            var pivotNames = colNames.Where(x => !cols.Contains(x)).ToList();
+            var builder = new DictDataFrameBuilder(false);
 
-            // TODO: check column types are compatible
-            var coercedType = typeof(Nullable<double>);
-
-            // TODO: collect pivoted data
-            long[] idx = new long[longDataCount];
-            foreach (var i in Enumerable.Range(0, (int)rowCount)) // FIXME: use long type
+            foreach (var row in df.Rows)
             {
-                foreach (var j in Enumerable.Range(0, cols.Count))
+                var currentPivot = pivotNames.ToDictionary(n => n, n => row[n]);
+
+                foreach (var col in cols)
                 {
-                    // TODO: generate index
+                    var newRow = new Dictionary<string, object> { [namesTo] = col, [valuesTo] = row[col] }.Concat(currentPivot).ToDictionary();
+                    builder.Add(newRow);
                 }
             }
 
+            return builder.ToDataFrame();
 
-            var nameColumn = new StringDataFrameColumn(namesTo, longDataCount);
 
-            var longDf = new DataFrame(remainingCols.Columns);
-            switch (coercedType)
-            {
-                case Type _ when coercedType == typeof(double) || coercedType == typeof(double?):
-                    var col = new DoubleDataFrameColumn(valuesTo, longDataCount);
-                    //longDf.Add(col);
-                    break;
-                case Type _ when coercedType == typeof(int) || coercedType == typeof(int?):
-                    var intCol = new Int64DataFrameColumn(valuesTo, longDataCount);
-                    break;
-                case Type _ when coercedType == typeof(string):
-                    var stringCol = new DoubleDataFrameColumn(valuesTo, longDataCount);
-                    break;
-                default: throw new ApplicationException($"Unsupported type {nameof(coercedType)}");
-            };
+                //var selectedCols = Column.Take(df, cols);
 
-            throw new NotImplementedException();
 
-        }
+                //// TODO: compile remaining columns
+                //var remainingCols = Column.Drop(df, cols);
+                //var longDataCount = cols.Count * rowCount;
+                ////var remainingColsLong = new List<DataFrameColumn>();
+
+                //// TODO: check column types are compatible
+                //var coercedType = typeof(Nullable<double>);
+
+                //// TODO: collect pivoted data
+                //long[] idx = new long[longDataCount];
+                //foreach (var i in Enumerable.Range(0, (int)rowCount)) // FIXME: use long type
+                //{
+                //    foreach (var j in Enumerable.Range(0, cols.Count))
+                //    {
+                //        // TODO: generate index
+                //    }
+                //}
+
+
+                //var nameColumn = new StringDataFrameColumn(namesTo, longDataCount);
+
+                //var longDf = new DataFrame(remainingCols.Columns);
+                //switch (coercedType)
+                //{
+                //    case Type _ when coercedType == typeof(double) || coercedType == typeof(double?):
+                //        var col = new DoubleDataFrameColumn(valuesTo, longDataCount);
+                //        //longDf.Add(col);
+                //        break;
+                //    case Type _ when coercedType == typeof(int) || coercedType == typeof(int?):
+                //        var intCol = new Int64DataFrameColumn(valuesTo, longDataCount);
+                //        break;
+                //    case Type _ when coercedType == typeof(string):
+                //        var stringCol = new DoubleDataFrameColumn(valuesTo, longDataCount);
+                //        break;
+                //    default: throw new ApplicationException($"Unsupported type {nameof(coercedType)}");
+                //};
+
+                //throw new NotImplementedException();
+
+            }
 
         public static DataFrame ToWider(DataFrame df, List<string> cols, string namesFrom)
         {
