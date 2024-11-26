@@ -43,6 +43,32 @@ namespace TidyDataFrameTests
         [TestMethod]
         public void TestToWider()
         {
+            var df1 = Df.MtCars;
+            var df2 = Pivoting.ToLonger(df1, ["cyl", "carb", "gear"]);
+
+            var df3 = Pivoting.ToWider(df2, "Names", "Values");
+
+            var cols = df3.Columns;
+
+            Assert.AreEqual(df1.Rows.Count, df3.Rows.Count);
+            Assert.AreEqual(df1.Columns.Count, df3.Columns.Count);
+            Assert.AreEqual(df2.Columns.Count - 2 +3, df3.Columns.Count);
+
+            Assert.AreEqual(typeof(int), df3["cyl"].DataType);
+            Assert.AreEqual(typeof(int), df3["gear"].DataType);
+            Assert.AreEqual(typeof(int), df3["carb"].DataType);
+
+            var firstRow = df3.Rows[0];
+            Assert.AreEqual("Mazda RX4", firstRow["Column0"]);
+            Assert.AreEqual(6, firstRow["cyl"]);
+            Assert.AreEqual(4, firstRow["gear"]);
+            Assert.AreEqual(4, firstRow["carb"]);
+
+            var lastRow = df3.Rows.Last();
+            Assert.AreEqual("Volvo 142E", lastRow["Column0"]);
+            Assert.AreEqual(4, lastRow["cyl"]);
+            Assert.AreEqual(4, lastRow["gear"]);
+            Assert.AreEqual(2, lastRow["carb"]);
         }
     }
 }

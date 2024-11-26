@@ -7,8 +7,20 @@ using Microsoft.Data.Analysis;
 
 namespace TidyDataFrame
 {
+    /// <summary>
+    /// Handling and transforming data frames with pivotal data columns
+    /// </summary>
     public static class Pivoting
     {
+        /// <summary>
+        /// Transforms a data frame into long format
+        /// </summary>
+        /// <param name="df">Data frame to be transformed</param>
+        /// <param name="cols">List column names to be pivoted to long format</param>
+        /// <param name="namesTo">Name of new column for data identifier</param>
+        /// <param name="valuesTo">Name of new column for data values</param>
+        /// <returns>A data frame in long format</returns>
+        /// <exception cref="InvalidDataException">Thrown, if selected columns do not exist in 'df'</exception>
         public static DataFrame ToLonger(DataFrame df, List<string> cols, string namesTo = "Names", string valuesTo = "Values")
         {
             var rowCount = df.Rows.Count;
@@ -41,55 +53,83 @@ namespace TidyDataFrame
             }
 
             return builder.ToDataFrame();
+        }
 
+        /// <summary>
+        /// Transforms a adta frame into wide format
+        /// </summary>
+        /// <param name="df">Data frame to be transformed</param>
+        /// <param name="namesFrom">Selects column with data identifiers, data type of this column must be 'string'</param>
+        /// <param name="valuesFrom">Selects column with data values</param>
+        /// <param name="allowMultipleEntries">Optionally allow multiple entries for a data identifier</param>
+        /// <returns>A data frame in wide format</returns>
+        /// <exception cref="InvalidDataException">Thrown, if selected columns do not exist in 'df'</exception>
+        /// <exception cref="InvalidDataTypeException">Thrown, if values if 'namesFrom' column has not data type 'string'</exception>
+        public static DataFrame ToWider(DataFrame df, string namesFrom, string valuesFrom, bool allowMultipleEntries = false)
+        {
+            var colNames = df.Columns.Select(c => c.Name).ToList();
+            var cols = new List<string> { namesFrom, valuesFrom };
 
-                //var selectedCols = Column.Take(df, cols);
-
-
-                //// TODO: compile remaining columns
-                //var remainingCols = Column.Drop(df, cols);
-                //var longDataCount = cols.Count * rowCount;
-                ////var remainingColsLong = new List<DataFrameColumn>();
-
-                //// TODO: check column types are compatible
-                //var coercedType = typeof(Nullable<double>);
-
-                //// TODO: collect pivoted data
-                //long[] idx = new long[longDataCount];
-                //foreach (var i in Enumerable.Range(0, (int)rowCount)) // FIXME: use long type
-                //{
-                //    foreach (var j in Enumerable.Range(0, cols.Count))
-                //    {
-                //        // TODO: generate index
-                //    }
-                //}
-
-
-                //var nameColumn = new StringDataFrameColumn(namesTo, longDataCount);
-
-                //var longDf = new DataFrame(remainingCols.Columns);
-                //switch (coercedType)
-                //{
-                //    case Type _ when coercedType == typeof(double) || coercedType == typeof(double?):
-                //        var col = new DoubleDataFrameColumn(valuesTo, longDataCount);
-                //        //longDf.Add(col);
-                //        break;
-                //    case Type _ when coercedType == typeof(int) || coercedType == typeof(int?):
-                //        var intCol = new Int64DataFrameColumn(valuesTo, longDataCount);
-                //        break;
-                //    case Type _ when coercedType == typeof(string):
-                //        var stringCol = new DoubleDataFrameColumn(valuesTo, longDataCount);
-                //        break;
-                //    default: throw new ApplicationException($"Unsupported type {nameof(coercedType)}");
-                //};
-
-                //throw new NotImplementedException();
-
+            // check cols are valid
+            if (!colNames.Contains(namesFrom))
+            {
+                throw new InvalidDataException($"{namesFrom} does not exist in data frame ({colNames})");
+            }
+            if (df[namesFrom].DataType != typeof(string))
+            {
+                throw new InvalidDataTypeException($"Data column {namesFrom} must be 'string', but is {df[namesFrom].DataType}");
+            }
+            if (!colNames.Contains(valuesFrom))
+            {
+                throw new InvalidDataException($"{valuesFrom} does not exist in data frame ({colNames})");
             }
 
-        public static DataFrame ToWider(DataFrame df, List<string> cols, string namesFrom)
-        {
-            throw new NotImplementedException();
+            var pivotNames = colNames.Where(x => !cols.Contains(x)).ToList();
+
+            var lut = new Dictionary<int, Dictionary<string, object>>();
+
+            foreach (var row in df.Rows)
+            {
+                // get a hash of pivot values
+                var hashString = string.Join("-", pivotNames.Select(n => row[n].ToString()));
+                var hash = hashString.GetHashCode();
+                if (lut.ContainsKey(hash))
+                {
+                    if (!lut[hash].TryAdd((string)row[namesFrom], row[valuesFrom]))
+                    {
+                        if (!allowMultipleEntries)
+                        {
+                            throw new InvalidDataException($"Ambigious data, entry for {row[namesFrom]} already present");
+                        }
+                        // adjust hashString & add to lut
+                        hashString += "_1";
+                        hash = hashString.GetHashCode();
+                        var entry = new Dictionary<string, object>();
+                        foreach (var p in pivotNames)
+                        {
+                            entry.Add(p, row[p]);
+                        }
+                        entry.Add((string)row[namesFrom], row[valuesFrom]);
+                        lut.Add(hash, entry);
+                    }
+                }
+                else
+                {
+                    // add new entry to lut
+                    var entry = new Dictionary<string, object>();
+                    foreach (var p in pivotNames)
+                    {
+                        entry.Add(p, row[p]);
+                    }
+                    entry.Add((string)row[namesFrom], row[valuesFrom]);
+                    lut.Add(hash, entry);
+                }
+            }
+
+            var builder = new DictDataFrameBuilder(false);
+            builder.Add(lut.Values);
+
+            return builder.ToDataFrame();
         }
     }
 }
