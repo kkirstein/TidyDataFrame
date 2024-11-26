@@ -31,7 +31,13 @@ namespace TidyDataFrameTests
             Assert.IsTrue(n.Contains("gear"));
             Assert.IsTrue(n.Contains("carb"));
 
-            // TODO: test for selected content
+            var values = df2["Values"];
+            Assert.IsInstanceOfType(values, typeof(Int32DataFrameColumn));
+
+            CollectionAssert.AreEqual(new List<String> { "cyl", "carb", "gear" }, names[0, 3].ToList());
+            CollectionAssert.AreEqual(new List<String> { "cyl", "carb", "gear" }, names[df2.Rows.Count - 3, 3].ToList());
+            CollectionAssert.AreEqual(new List<int> { 6, 4, 4 }, values[0, 3].ToList());
+            CollectionAssert.AreEqual(new List<int> { 4, 2, 4 }, values[df2.Rows.Count - 3, 3].ToList());
         }
 
         [TestMethod]
