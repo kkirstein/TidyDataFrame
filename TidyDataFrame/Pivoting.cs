@@ -56,7 +56,7 @@ namespace TidyDataFrame
         }
 
         /// <summary>
-        /// Transforms a adta frame into wide format
+        /// Transforms a data frame into wide format
         /// </summary>
         /// <param name="df">Data frame to be transformed</param>
         /// <param name="namesFrom">Selects column with data identifiers, data type of this column must be 'string'</param>
