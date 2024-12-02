@@ -3,21 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TidyDataFrame", "TidyDataFrame\TidyDataFrame.csproj", "{90EA297C-9A37-42C8-BFFD-BC405A7B9823}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FED65026-E74C-4817-B955-C057A443854D}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TidyDataFrame.Extensions", "TidyDataFrame.Extensions\TidyDataFrame.Extensions.csproj", "{79F01C9A-C86A-4359-A566-A6CDD5F2E0B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame", "Libs\TidyDataFrame\TidyDataFrame.csproj", "{22CCF023-4C4E-4477-961A-BF52E8AE9FDC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TidyDataFrameTests", "TidyDataFrameTests\TidyDataFrameTests.csproj", "{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Examples", "Libs\TidyDataFrame.Examples\TidyDataFrame.Examples.csproj", "{EDAD7280-02A2-487A-A02E-379B53A15D3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TidyDataFrameBenchmark", "TidyDataFrameBenchmark\TidyDataFrameBenchmark.csproj", "{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Extensions", "Libs\TidyDataFrame.Extensions\TidyDataFrame.Extensions.csproj", "{0D3257DF-6D1A-498E-873B-D896213A944B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Examples", "TidyDataFrame.Examples\TidyDataFrame.Examples.csproj", "{B146429B-2283-40FD-9B29-0031FB3A00EF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{95D70601-A05A-4308-A4C9-11AD8132004A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1F8FB58B-BCFA-4B6C-A361-45FCAEA9C757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Tests", "Tests\TidyDataFrame.Tests\TidyDataFrame.Tests.csproj", "{5129028A-4F15-4756-B3A9-6660331B603E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Benchmark", "Tests\TidyDataFrame.Benchmark\TidyDataFrame.Benchmark.csproj", "{FC4647FF-6DC1-4BB8-A7C3-317360FBFE19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,29 +29,36 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{90EA297C-9A37-42C8-BFFD-BC405A7B9823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90EA297C-9A37-42C8-BFFD-BC405A7B9823}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90EA297C-9A37-42C8-BFFD-BC405A7B9823}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90EA297C-9A37-42C8-BFFD-BC405A7B9823}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79F01C9A-C86A-4359-A566-A6CDD5F2E0B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79F01C9A-C86A-4359-A566-A6CDD5F2E0B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79F01C9A-C86A-4359-A566-A6CDD5F2E0B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79F01C9A-C86A-4359-A566-A6CDD5F2E0B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F598CCD-09CC-46E5-91B9-CD8D980BE1EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DF205C2-B0C9-4C99-AA68-9EA80B65876A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B146429B-2283-40FD-9B29-0031FB3A00EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B146429B-2283-40FD-9B29-0031FB3A00EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B146429B-2283-40FD-9B29-0031FB3A00EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B146429B-2283-40FD-9B29-0031FB3A00EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22CCF023-4C4E-4477-961A-BF52E8AE9FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22CCF023-4C4E-4477-961A-BF52E8AE9FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22CCF023-4C4E-4477-961A-BF52E8AE9FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22CCF023-4C4E-4477-961A-BF52E8AE9FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDAD7280-02A2-487A-A02E-379B53A15D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDAD7280-02A2-487A-A02E-379B53A15D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDAD7280-02A2-487A-A02E-379B53A15D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDAD7280-02A2-487A-A02E-379B53A15D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D3257DF-6D1A-498E-873B-D896213A944B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D3257DF-6D1A-498E-873B-D896213A944B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3257DF-6D1A-498E-873B-D896213A944B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D3257DF-6D1A-498E-873B-D896213A944B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5129028A-4F15-4756-B3A9-6660331B603E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5129028A-4F15-4756-B3A9-6660331B603E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5129028A-4F15-4756-B3A9-6660331B603E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5129028A-4F15-4756-B3A9-6660331B603E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4647FF-6DC1-4BB8-A7C3-317360FBFE19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4647FF-6DC1-4BB8-A7C3-317360FBFE19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4647FF-6DC1-4BB8-A7C3-317360FBFE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4647FF-6DC1-4BB8-A7C3-317360FBFE19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{22CCF023-4C4E-4477-961A-BF52E8AE9FDC} = {95D70601-A05A-4308-A4C9-11AD8132004A}
+		{EDAD7280-02A2-487A-A02E-379B53A15D3A} = {95D70601-A05A-4308-A4C9-11AD8132004A}
+		{0D3257DF-6D1A-498E-873B-D896213A944B} = {95D70601-A05A-4308-A4C9-11AD8132004A}
+		{5129028A-4F15-4756-B3A9-6660331B603E} = {1F8FB58B-BCFA-4B6C-A361-45FCAEA9C757}
+		{FC4647FF-6DC1-4BB8-A7C3-317360FBFE19} = {1F8FB58B-BCFA-4B6C-A361-45FCAEA9C757}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54E3AF18-35E4-4E32-9C92-5BBE041E3D07}
