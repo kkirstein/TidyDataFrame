@@ -10,7 +10,7 @@ using TidyDataFrame.Examples;
 namespace TidyDataFrameTests
 {
     [TestClass]
-    public class TestPivoting
+    public class TestPivot
     {
 
         [TestMethod]
@@ -18,7 +18,7 @@ namespace TidyDataFrameTests
         {
             var df1 = Df.MtCars;
 
-            var df2 = Pivoting.ToLonger(df1, ["cyl", "carb", "gear"]);
+            var df2 = Pivot.ToLonger(df1, ["cyl", "carb", "gear"]);
 
             Assert.IsInstanceOfType(df2, typeof(DataFrame));
             Assert.AreEqual(df1.Columns.Count - 3 + 2, df2.Columns.Count);
@@ -44,9 +44,9 @@ namespace TidyDataFrameTests
         public void TestToWider()
         {
             var df1 = Df.MtCars;
-            var df2 = Pivoting.ToLonger(df1, ["cyl", "carb", "gear"]);
+            var df2 = Pivot.ToLonger(df1, ["cyl", "carb", "gear"]);
 
-            var df3 = Pivoting.ToWider(df2, "Names", "Values");
+            var df3 = Pivot.ToWider(df2, "Names", "Values");
 
             var cols = df3.Columns;
 
