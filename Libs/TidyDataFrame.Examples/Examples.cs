@@ -8,7 +8,8 @@ namespace TidyDataFrame.Examples
         {
             get
             {
-                return DataFrame.LoadCsv(""".\Datasets\relig_income.csv""");
+                using var inp = File.OpenRead(""".\Datasets\relig_income.csv""");
+                return DataFrame.LoadCsv(inp);
             }
         }
 
@@ -16,7 +17,8 @@ namespace TidyDataFrame.Examples
         {
             get
             {
-                return DataFrame.LoadCsv(""".\Datasets\mtcars.csv""",
+                using var inp = File.OpenRead(""".\Datasets\mtcars.csv""");
+                return DataFrame.LoadCsv(inp,
                     dataTypes:
                         [typeof(string), typeof(float), typeof(int), typeof(float),
                         typeof(int), typeof(float), typeof(float), typeof(float),

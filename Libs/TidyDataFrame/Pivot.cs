@@ -10,7 +10,7 @@ namespace TidyDataFrame
     /// <summary>
     /// Handling and transforming data frames with pivotal data columns
     /// </summary>
-    public static class Pivoting
+    public static class Pivot
     {
         /// <summary>
         /// Transforms a data frame into long format

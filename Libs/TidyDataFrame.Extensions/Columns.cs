@@ -20,5 +20,8 @@ namespace TidyDataFrame.Extensions
         {
             return TidyDataFrame.Column.Take(df, columnNames);
         }
+
+        public static IEnumerable<string> Names(this DataFrame df) => df.Columns.Select(c => c.Name);
+       
     }
 }
