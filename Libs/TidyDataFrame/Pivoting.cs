@@ -27,16 +27,21 @@ namespace TidyDataFrame
             var colNames = df.Columns.Select(c => c.Name).ToList();
 
             // check cols are valid
-            foreach (var colName in cols)
+            foreach (var c in cols)
             {
-                if (!colNames.Contains(colName))
+                if (!colNames.Contains(c))
                 {
-                    throw new InvalidDataException($"{colName} does not exist in data frame ({colNames})");
+                    throw new InvalidDataException($"{c} does not exist in data frame ({colNames})");
                 }
             }
 
-            // TODO: check type compatibility
-            // ..
+            // check type compatibility
+            var initialType = new TypeCoercing.TypeMatch(df[cols.First()].DataType);
+            var typeCheck = cols.Aggregate((TypeCoercing)initialType, (cur, next) => cur.Check(df[next]));
+            if (typeCheck is TypeCoercing.TypeIncompatible)
+            {
+                throw new InvalidDataTypeException("Column types can not be coerced to common data type");
+            }
 
             var pivotNames = colNames.Where(x => !cols.Contains(x)).ToList();
             var builder = new DictDataFrameBuilder(false);
