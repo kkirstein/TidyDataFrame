@@ -106,6 +106,7 @@ namespace TidyDataFrame
                 var name = column.Key;
                 var type = column.Value;
 
+                //cols.Add(Column.ToDataFrameColumn(_records.Select(r => r.TryGetValue(name, out var v) ? v : null), name));
                 switch (type)
                 {
                     case Type _ when type == typeof(string):

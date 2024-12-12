@@ -47,5 +47,62 @@ namespace TidyDataFrame
             var selectedCols = df.Columns.Where(c => columnNames.Contains(c.Name));
             return new DataFrame(selectedCols);
         }
+
+        /// <summary>
+        /// Convert given enumerable to a data frame column of matching data type
+        /// </summary>
+        /// <typeparam name="T">Data type of given values</typeparam>
+        /// <param name="data">Data to be converted</param>
+        /// <param name="name">Name of data frame column</param>
+        /// <returns>A data frame column</returns>
+        /// <exception cref="InvalidDataTypeException">Raised, when 'data' is of unsupported type</exception>
+        public static DataFrameColumn ToDataFrameColumn<T>(IEnumerable<T> data, string name)
+            where T : unmanaged
+        {
+            throw new InvalidDataTypeException($"Unsupported type '{typeof(T)}' for column '{name}'");
+        }
+
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<string> data, string name)
+        {
+            return new StringDataFrameColumn(name, data);
+        }
+
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<double> data, string name)
+        {
+            return new DoubleDataFrameColumn(name, data);
+        }
+
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<double?> data, string name)
+        {
+            return new DoubleDataFrameColumn(name, data);
+        }
+
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<float> data, string name)
+        {
+            return new SingleDataFrameColumn(name, data);
+        }
+        
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<float?> data, string name)
+        {
+            return new SingleDataFrameColumn(name, data);
+        }
+        
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<int> data, string name)
+        {
+            return new Int32DataFrameColumn(name, data);
+        }
+
+        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<int?> data, string name)
+        {
+            return new Int32DataFrameColumn(name, data);
+        }
     }
 }
+

@@ -103,6 +103,7 @@ namespace TidyDataFrame
                 var prop = column.Value;
                 var type = prop.PropertyType;
 
+                //cols.Add(Column.ToDataFrameColumn(_records.Select(r => prop.GetValue(r)), name));
                 switch (type)
                 {
                     case Type _ when type == typeof(string):
