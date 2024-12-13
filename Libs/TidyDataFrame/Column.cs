@@ -1,8 +1,12 @@
 ﻿
 using Microsoft.Data.Analysis;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TidyDataFrame
 {
+    /// <summary>
+    /// Manipulate column set of a data frame
+    /// </summary>
     public static class Column
     {
         /// <summary>
@@ -48,6 +52,38 @@ namespace TidyDataFrame
             return new DataFrame(selectedCols);
         }
 
+
+        public static IEnumerable<T> ToEnumerable<T>(DataFrame df, string name)
+        {
+            var colNames = df.Columns.Select(c => c.Name);
+            if (!colNames.Contains(name))
+            {
+                throw new InvalidDataException($"{name} does not exist in data frame ({colNames})");
+            }
+
+            var length = df[name].Length;
+            var type = df[name].DataType;
+
+            var data = Enumerable.Range(0, (int)length).Select(i => (T)df[name][i]);
+            return data;
+        }
+
+        public static bool TryToEnumarable<T>(DataFrame df, string name,
+            [NotNullWhen(true)]out IEnumerable<T>? data)
+        {
+            try
+            {
+                data = ToEnumerable<T>(df, name);
+                return true;
+            }
+            catch (InvalidCastException)
+            {
+                data = null;
+                return false;
+            }
+        }
+
+
         /// <summary>
         /// Convert given enumerable to a data frame column of matching data type
         /// </summary>
@@ -85,13 +121,13 @@ namespace TidyDataFrame
         {
             return new SingleDataFrameColumn(name, data);
         }
-        
+
         /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<float?> data, string name)
         {
             return new SingleDataFrameColumn(name, data);
         }
-        
+
         /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<int> data, string name)
         {
