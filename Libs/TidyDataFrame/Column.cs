@@ -68,7 +68,7 @@ namespace TidyDataFrame
             return data;
         }
 
-        public static bool TryToEnumarable<T>(DataFrame df, string name,
+        public static bool TryToEnumerable<T>(DataFrame df, string name,
             [NotNullWhen(true)]out IEnumerable<T>? data)
         {
             try
