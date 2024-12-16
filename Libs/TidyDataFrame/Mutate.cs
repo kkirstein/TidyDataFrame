@@ -31,11 +31,11 @@ namespace TidyDataFrame
             }
 
             // generate new data collection
-            if (!Column.TryToEnumarable<A>(df, columns.Item1, out var data1))
+            if (!Column.TryToEnumerable<A>(df, columns.Item1, out var data1))
             {
                 throw new InvalidDataTypeException($"Column {columns.Item1} could not be cast to {typeof(A)}");
             }
-            if (!Column.TryToEnumarable<B>(df, columns.Item1, out var data2))
+            if (!Column.TryToEnumerable<B>(df, columns.Item1, out var data2))
             {
                 throw new InvalidDataTypeException($"Column {columns.Item2} could not be cast to {typeof(B)}");
             }
