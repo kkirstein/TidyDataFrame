@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.Analysis;
 using TidyDataFrame;
 
-namespace TidyDataFrameTests
+namespace TidyDataFrame.Tests
 {
     [TestClass]
     public class TestDictDataframeBuilder

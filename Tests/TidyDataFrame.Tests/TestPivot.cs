@@ -7,7 +7,7 @@ using Microsoft.Data.Analysis;
 using TidyDataFrame;
 using TidyDataFrame.Examples;
 
-namespace TidyDataFrameTests
+namespace TidyDataFrame.Tests
 {
     [TestClass]
     public class TestPivot

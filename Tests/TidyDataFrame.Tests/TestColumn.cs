@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TidyDataFrame;
 using TidyDataFrame.Examples;
 
-namespace TidyDataFrameTests
+namespace TidyDataFrame.Tests
 {
     [TestClass]
     public class TestColumn
