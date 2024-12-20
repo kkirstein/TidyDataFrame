@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using Microsoft.Data.Analysis;
 using System.Diagnostics.CodeAnalysis;
 
@@ -95,6 +96,11 @@ namespace TidyDataFrame
         public static DataFrameColumn ToDataFrameColumn<T>(IEnumerable<T> data, string name)
             where T : unmanaged
         {
+            // TODO: perform dynamic dispatch
+            //return typeof(T) switch
+            //{
+            //    _ => throw new InvalidDataTypeException($"Unsupported type '{typeof(T)}' for column '{name}'")
+            //};
             throw new InvalidDataTypeException($"Unsupported type '{typeof(T)}' for column '{name}'");
         }
 
