@@ -70,7 +70,7 @@ namespace TidyDataFrame
         }
 
         public static bool TryToEnumerable<T>(DataFrame df, string name,
-            [NotNullWhen(true)]out IEnumerable<T>? data)
+            [NotNullWhen(true)] out IEnumerable<T>? data)
         {
             try
             {
@@ -96,51 +96,71 @@ namespace TidyDataFrame
         public static DataFrameColumn ToDataFrameColumn<T>(IEnumerable<T> data, string name)
             where T : unmanaged
         {
-            // TODO: perform dynamic dispatch
-            //return typeof(T) switch
-            //{
-            //    _ => throw new InvalidDataTypeException($"Unsupported type '{typeof(T)}' for column '{name}'")
-            //};
             throw new InvalidDataTypeException($"Unsupported type '{typeof(T)}' for column '{name}'");
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <summary>
+        /// Convert given enumerable to a data frame column of matching data type
+        /// </summary>
+        /// <typeparam name="T">Data type of given values</typeparam>
+        /// <param name="data">Data to be converted</param>
+        /// <param name="name">Name of data frame column</param>
+        /// <returns>A data frame column</returns>
+        /// <exception cref="InvalidDataException">Raised, when 'data' is empty</exception>"
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<dynamic> data, string name)
+        {
+            if (data == null || data.Count() == 0)
+            {
+                throw new InvalidDataException($"Data of column'{name}' is empty");
+            }
+            var first = data.First();
+            return first switch
+            {
+                string => new StringDataFrameColumn(name,data.Select(x=>(string)x)),
+                double => new DoubleDataFrameColumn(name,data.Select(x=>(double)x)),
+                float => new SingleDataFrameColumn(name, data.Select(x=>(float)x)),
+                int => new Int32DataFrameColumn(name, data.Select(x => (int)x)),
+                _ => throw new InvalidDataTypeException($"Unsupported type '{first.GetType()}' for column '{name}'")
+            };
+        }
+
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<string> data, string name)
         {
             return new StringDataFrameColumn(name, data);
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<double> data, string name)
         {
             return new DoubleDataFrameColumn(name, data);
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<double?> data, string name)
         {
             return new DoubleDataFrameColumn(name, data);
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<float> data, string name)
         {
             return new SingleDataFrameColumn(name, data);
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<float?> data, string name)
         {
             return new SingleDataFrameColumn(name, data);
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<int> data, string name)
         {
             return new Int32DataFrameColumn(name, data);
         }
 
-        /// <inheritdoc cref="ToDataFrameColumn{T}(IEnumerable{T}, string)"/>
+        /// <inheritdoc cref="ToDataFrameColumn(IEnumerable{dynamic}, string)"/>
         public static DataFrameColumn ToDataFrameColumn(IEnumerable<int?> data, string name)
         {
             return new Int32DataFrameColumn(name, data);

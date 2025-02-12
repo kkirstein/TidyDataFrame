@@ -35,11 +35,13 @@ namespace TidyDataFrame
             {
                 throw new InvalidDataTypeException($"Column {columns.Item1} could not be cast to {typeof(A)}");
             }
-            if (!Column.TryToEnumerable<B>(df, columns.Item1, out var data2))
+            if (!Column.TryToEnumerable<B>(df, columns.Item2, out var data2))
             {
                 throw new InvalidDataTypeException($"Column {columns.Item2} could not be cast to {typeof(B)}");
             }
-            var newData = data1.Zip(data2).Select(fun);
+
+            // static dispatch does not work here, so we have to use dynamic
+            var newData = data1.Zip(data2).Select(fun).Select(x => (dynamic)x);
 
             // add data frame column
             var newColumn = Column.ToDataFrameColumn(newData, newName);

@@ -12,7 +12,7 @@ namespace TidyDataFrame.Tests
     public class TestMutate
     {
         [TestMethod]
-        [Ignore]
+        //[Ignore]
         public void TestFun2()
         {
             var df = Df.MtCars;
@@ -20,7 +20,7 @@ namespace TidyDataFrame.Tests
             //Func<(float, int), float> f = arg => arg.Item1 / arg.Item2;
             var df2 = Mutate.Fun2<float, int, float>(df, "DispPerCyl", ("disp", "cyl"), x => x.Item1 / x.Item2);
 
-            Assert.Equals(df.Columns.Count + 1, df2.Columns.Count);
+            Assert.AreEqual(df.Columns.Count + 1, df2.Columns.Count);
             Assert.AreEqual(df.Rows.Count, df2.Rows.Count);
         }
     }
