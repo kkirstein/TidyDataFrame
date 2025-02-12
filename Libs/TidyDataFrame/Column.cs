@@ -54,6 +54,14 @@ namespace TidyDataFrame
         }
 
 
+        /// <summary>
+        /// Convert a data frame column to an enumerable of respective data type
+        /// </summary>
+        /// <typeparam name="T">Data type of column data</typeparam>
+        /// <param name="df">Data frame with selected column</param>
+        /// <param name="name">Nam eof slected column</param>
+        /// <returns>Enumarable with selected column data</returns>
+        /// <exception cref="InvalidDataException">Raised, when data column does not exist</exception>
         public static IEnumerable<T> ToEnumerable<T>(DataFrame df, string name)
         {
             var colNames = df.Columns.Select(c => c.Name);
@@ -69,6 +77,11 @@ namespace TidyDataFrame
             return data;
         }
 
+        /// <summary>
+        /// Try to convert a data frame column to an enumerable of respective data type
+        /// </summary>
+        /// <returns>True, if column exists and conversion was successfull</returns>
+        /// <inheritdoc cref="ToEnumerable{T}(DataFrame, string)"/>
         public static bool TryToEnumerable<T>(DataFrame df, string name,
             [NotNullWhen(true)] out IEnumerable<T>? data)
         {
