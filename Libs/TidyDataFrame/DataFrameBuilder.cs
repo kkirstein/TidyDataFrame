@@ -103,28 +103,7 @@ namespace TidyDataFrame
                 var prop = column.Value;
                 var type = prop.PropertyType;
 
-                //cols.Add(Column.ToDataFrameColumn(_records.Select(r => prop.GetValue(r)), name));
-                switch (type)
-                {
-                    case Type _ when type == typeof(string):
-                        var _stringCol = new StringDataFrameColumn(name, _records.Select(r => (string?)prop.GetValue(r)));
-                        cols.Add(_stringCol);
-                        break;
-                    case Type _ when type == typeof(double) || type == typeof(Nullable<double>):
-                        var _doubleCol = new DoubleDataFrameColumn(name, _records.Select(r => (double?)prop.GetValue(r)));
-                        cols.Add(_doubleCol);
-                        break;
-                    case Type _ when type == typeof(float) || type == typeof(Nullable<float>):
-                        var _singleCol = new SingleDataFrameColumn(name, _records.Select(r => (float?)prop.GetValue(r)));
-                        cols.Add(_singleCol);
-                        break;
-                    case Type _ when type == typeof(System.Int32) || type == typeof(Nullable<System.Int32>):
-                        var _intCol = new Int32DataFrameColumn(name, _records.Select(r => (int?)prop.GetValue(r)));
-                        cols.Add(_intCol);
-                        break;
-                    default:
-                        throw new InvalidDataTypeException($"Unsupported type {nameof(type)}");
-                }
+                cols.Add(Column.ToDataFrameColumn(_records.Select(r => prop.GetValue(r)), name));
             }
 
 

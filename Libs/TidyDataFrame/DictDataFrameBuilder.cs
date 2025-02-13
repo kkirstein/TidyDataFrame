@@ -106,28 +106,7 @@ namespace TidyDataFrame
                 var name = column.Key;
                 var type = column.Value;
 
-                //cols.Add(Column.ToDataFrameColumn(_records.Select(r => r.TryGetValue(name, out var v) ? v : null), name));
-                switch (type)
-                {
-                    case Type _ when type == typeof(string):
-                        var _stringCol = new StringDataFrameColumn(name, _records.Select(r => r.TryGetValue(name, out var v) ? (string?)v : null));
-                        cols.Add(_stringCol);
-                        break;
-                    case Type _ when type == typeof(double):
-                        var _doubleCol = new DoubleDataFrameColumn(name, _records.Select(r => r.TryGetValue(name, out var v) ? (double?)v : null));
-                        cols.Add(_doubleCol);
-                        break;
-                    case Type _ when type == typeof(float):
-                        var _singleCol = new SingleDataFrameColumn(name, _records.Select(r => r.TryGetValue(name, out var v) ? (float?)v : null));
-                        cols.Add(_singleCol);
-                        break;
-                    case Type _ when type == typeof(System.Int32):
-                        var _intCol = new Int32DataFrameColumn(name, _records.Select(r => r.TryGetValue(name, out var v) ? (int?)v : null));
-                        cols.Add(_intCol);
-                        break;
-                    default:
-                        throw new InvalidDataTypeException($"Unsupported type {type}");
-                }
+                cols.Add(Column.ToDataFrameColumn(_records.Select(r => r.TryGetValue(name, out var v) ? v : null), name));
             }
 
             return new DataFrame(cols);

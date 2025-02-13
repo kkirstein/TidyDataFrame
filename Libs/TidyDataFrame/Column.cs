@@ -120,20 +120,20 @@ namespace TidyDataFrame
         /// <param name="name">Name of data frame column</param>
         /// <returns>A data frame column</returns>
         /// <exception cref="InvalidDataException">Raised, when 'data' is empty</exception>"
-        public static DataFrameColumn ToDataFrameColumn(IEnumerable<dynamic> data, string name)
+        public static DataFrameColumn ToDataFrameColumn(IEnumerable<dynamic?> data, string name)
         {
             if (data == null || data.Count() == 0)
             {
                 throw new InvalidDataException($"Data of column'{name}' is empty");
             }
-            var first = data.First();
-            return first switch
+            var first_not_null = data.First(x => x != null)!;
+            return first_not_null switch
             {
-                string => new StringDataFrameColumn(name,data.Select(x=>(string)x)),
-                double => new DoubleDataFrameColumn(name,data.Select(x=>(double)x)),
-                float => new SingleDataFrameColumn(name, data.Select(x=>(float)x)),
-                int => new Int32DataFrameColumn(name, data.Select(x => (int)x)),
-                _ => throw new InvalidDataTypeException($"Unsupported type '{first.GetType()}' for column '{name}'")
+                string => new StringDataFrameColumn(name, data.Select(x => (string?)x)),
+                double => new DoubleDataFrameColumn(name, data.Select(x => (double?)x)),
+                float => new SingleDataFrameColumn(name, data.Select(x => (float?)x)),
+                int => new Int32DataFrameColumn(name, data.Select(x => (int?)x)),
+                _ => throw new InvalidDataTypeException($"Unsupported type '{first_not_null.GetType()}' for column '{name}'")
             };
         }
 
