@@ -109,7 +109,7 @@ namespace TidyDataFrame
         public static DataFrameColumn ToDataFrameColumn<T>(IEnumerable<T> data, string name)
             where T : unmanaged
         {
-            throw new InvalidDataTypeException($"Unsupported type '{typeof(T)}' for column '{name}'");
+            throw new InvalidDataTypeException($"Generic method: Unsupported type '{typeof(T)}' for column '{name}'");
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace TidyDataFrame
                 double => new DoubleDataFrameColumn(name, data.Select(x => (double?)x)),
                 float => new SingleDataFrameColumn(name, data.Select(x => (float?)x)),
                 int => new Int32DataFrameColumn(name, data.Select(x => (int?)x)),
-                _ => throw new InvalidDataTypeException($"Unsupported type '{first_not_null.GetType()}' for column '{name}'")
+                _ => throw new InvalidDataTypeException($"Dynamic method: Unsupported type '{first_not_null.GetType()}' for column '{name}'")
             };
         }
 
