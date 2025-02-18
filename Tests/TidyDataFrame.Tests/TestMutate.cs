@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TidyDataFrame;
 using TidyDataFrame.Examples;
+using VerifyMSTest;
 
 namespace TidyDataFrame.Tests
 {
@@ -12,7 +13,7 @@ namespace TidyDataFrame.Tests
     public class TestMutate
     {
         [TestMethod]
-        public void TestFunTuple2()
+        public async Task TestFunTuple2()
         {
             var df = Df.MtCars;
 
@@ -21,6 +22,8 @@ namespace TidyDataFrame.Tests
 
             Assert.AreEqual(df.Columns.Count + 1, df2.Columns.Count);
             Assert.AreEqual(df.Rows.Count, df2.Rows.Count);
+
+            await Verifier.Verify(df2);
         }
 
         [TestMethod]
