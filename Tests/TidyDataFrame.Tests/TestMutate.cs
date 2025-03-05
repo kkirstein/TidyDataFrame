@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using TidyDataFrame;
 using TidyDataFrame.Examples;
-using VerifyMSTest;
 
 namespace TidyDataFrame.Tests
 {
     [TestClass]
-    public class TestMutate
+    [UsesVerify]
+    public partial class TestMutate
     {
         [TestMethod]
-        public async Task TestFunTuple2()
+        public Task TestFunTuple2()
         {
             var df = Df.MtCars;
 
@@ -23,11 +23,11 @@ namespace TidyDataFrame.Tests
             Assert.AreEqual(df.Columns.Count + 1, df2.Columns.Count);
             Assert.AreEqual(df.Rows.Count, df2.Rows.Count);
 
-            await Verifier.Verify(df2);
+            return Verifier.Verify(df2);
         }
 
         [TestMethod]
-        public void TestFun2()
+        public Task TestFun2()
         {
             var df = Df.MtCars;
 
@@ -35,10 +35,12 @@ namespace TidyDataFrame.Tests
 
             Assert.AreEqual(df.Columns.Count + 1, df2.Columns.Count);
             Assert.AreEqual(df.Rows.Count, df2.Rows.Count);
+
+            return Verifier.Verify(df2);
         }
 
         [TestMethod]
-        public void TestFun3()
+        public Task TestFun3()
         {
             var df = Df.MtCars;
 
@@ -46,6 +48,8 @@ namespace TidyDataFrame.Tests
 
             Assert.AreEqual(df.Columns.Count + 1, df2.Columns.Count);
             Assert.AreEqual(df.Rows.Count, df2.Rows.Count);
+
+            return Verifier.Verify(df2);
         }
     }
 }
