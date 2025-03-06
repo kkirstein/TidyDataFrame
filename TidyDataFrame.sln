@@ -25,6 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Benchmark", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Extensions.Tests", "Tests\TidyDataFrame.Extensions.Tests\TidyDataFrame.Extensions.Tests.csproj", "{E564D5FF-D568-4C12-9548-66317D21F8B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SettingsAndScripts", "SettingsAndScripts", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		SettingsAndScripts\GlobalAssemblyInfo.cs = SettingsAndScripts\GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
