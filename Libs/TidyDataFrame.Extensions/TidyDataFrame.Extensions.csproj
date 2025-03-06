@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Analysis" Version="0.22.0" />
+    <PackageReference Include="Microsoft.Data.Analysis" Version="0.22.2" />
   </ItemGroup>
 
   <ItemGroup>
