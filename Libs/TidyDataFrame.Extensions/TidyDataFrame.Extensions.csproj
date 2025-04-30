@@ -4,6 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>TidyDataFrame.Extensions</Title>
+    <Version>0.1.0</Version>
+    <Authors>kkirstein</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>DataFrame;DataTable</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,6 +21,13 @@
 
   <ItemGroup>
     <Compile Include="..\..\SettingsAndScripts\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
