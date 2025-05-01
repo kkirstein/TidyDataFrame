@@ -15,6 +15,10 @@ Tidy data is data where:
 
 Tidy data describes a standard way of storing data.
 
+## Grammar of Graphics
+
+_Grammar of Graphics_ is an attempt to unify the descriptipon of plots and charts for visualization of data sources. It is the base of the well-known `ggplot2` package for `R` (see [ggplot2](https://ggplot2.tidyverse.org/))
+One goal of the `TidyDataFrame` ecosystem is to provide a plotting API for `C#`, based on _ Grammar of Graphics_, like `seaborn` provides for `Python`.
 
 ## Microsoft.Data.Analysis
 
@@ -22,7 +26,7 @@ This library builds upon the data frame implementation of `Microsoft.Data.Analys
 
 ## Components
 
-The _TidydatFrame_ ecosystem currently consist of the following components:
+The _TidyDataFrame_ ecosystem currently consist of the following components:
 
 * `TidyDataFrame`: Basic library to provide tidy data handling methods for `Microsoft.Data.Analysis`
 * `TidyDataFrame.Extensions`: Extension methods for tidy data handling of `Microsoft.Data.Analysis.DataFrame`
