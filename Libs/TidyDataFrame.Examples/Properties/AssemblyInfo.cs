@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TidyDataFrame.Examples")]
+//[assembly: AssemblyTitle("TidyDataFrame.Examples")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyProduct("TidyDataFrame.Examples")]
+//[assembly: AssemblyProduct("TidyDataFrame.Examples")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
