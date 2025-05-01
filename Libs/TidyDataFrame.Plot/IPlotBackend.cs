@@ -9,7 +9,7 @@ namespace TidyDataFrame.Plot
     /// <summary>
     /// Interface to the underlying plotting framework to render the plot
     /// </summary>
-    internal interface IPlotBackend
+    public interface IPlotBackend
     {
     }
 }

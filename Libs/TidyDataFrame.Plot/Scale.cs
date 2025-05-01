@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace TidyDataFrame.Plot
 {
     /// <summary>
-    /// Definition of the graph, as described by the Grammar of Graphics
+    /// Abstract base class fro scale definition of an aesthetic
     /// </summary>
-    public class Graph
+    public abstract class Scale
     {
     }
 }

@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 namespace TidyDataFrame.Plot
 {
     /// <summary>
-    /// Aestathetics descirbe the mapping of data columns to a geometry property
+    /// Abstract base class to represent a rendered graph aka plot
     /// </summary>
-    public interface IAesthetic
+    public abstract class Plot
     {
-        public void SetScale(Scale scale);
-        public Scale GetScale();
-
     }
 }
