@@ -11,7 +11,10 @@ namespace TidyDataFrame.Plot
     /// </summary>
     /// Each geometry requires a certain set of aesthetics to map a data column to a geometrc property, e.g,
     /// x/y-coordinates, geometry color, or shape.
-    public interface IGeometry
+    public interface IGeometry<T>
     {
+        public T Geometry(Geometry geom);
+
+        public bool HasValidAesthetics();
     }
 }

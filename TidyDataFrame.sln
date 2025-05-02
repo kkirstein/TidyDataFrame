@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SettingsAndScripts", "Setti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Plot", "Libs\TidyDataFrame.Plot\TidyDataFrame.Plot.csproj", "{4C1F273D-C099-4B7A-B133-62514DBAE197}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TidyDataFrame.Plot.Tests", "Tests\TidyDataFrame.Plot.Tests\TidyDataFrame.Plot.Tests.csproj", "{8358BC44-59CB-40D7-93BD-EFFF9C91BAB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{4C1F273D-C099-4B7A-B133-62514DBAE197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C1F273D-C099-4B7A-B133-62514DBAE197}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C1F273D-C099-4B7A-B133-62514DBAE197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8358BC44-59CB-40D7-93BD-EFFF9C91BAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8358BC44-59CB-40D7-93BD-EFFF9C91BAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8358BC44-59CB-40D7-93BD-EFFF9C91BAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8358BC44-59CB-40D7-93BD-EFFF9C91BAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{5129028A-4F15-4756-B3A9-6660331B603E} = {1F8FB58B-BCFA-4B6C-A361-45FCAEA9C757}
 		{E564D5FF-D568-4C12-9548-66317D21F8B9} = {1F8FB58B-BCFA-4B6C-A361-45FCAEA9C757}
 		{4C1F273D-C099-4B7A-B133-62514DBAE197} = {95D70601-A05A-4308-A4C9-11AD8132004A}
+		{8358BC44-59CB-40D7-93BD-EFFF9C91BAB6} = {1F8FB58B-BCFA-4B6C-A361-45FCAEA9C757}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54E3AF18-35E4-4E32-9C92-5BBE041E3D07}

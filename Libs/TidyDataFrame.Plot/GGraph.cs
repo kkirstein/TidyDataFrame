@@ -10,19 +10,21 @@ namespace TidyDataFrame.Plot
     /// <summary>
     /// Definition of the graph, as described by the Grammar of Graphics
     /// </summary>
-    public class GGraph
+    public class GGraph : IAesthetic<GGraph>, IGeometry<GGraph>
     {
         #region Properties
 
-        public List<IGeometry> Geometries { get; }
+        //public List<IGeometry> Geometries { get { return _geometries; } }
 
-        public List<IAesthetic> Aesthetics { get; }
+        //public Dictionary<AestheticMapping, string> Aesthetics { get { return _aesthetics; } }
 
         #endregion
 
         #region private fields
 
         private DataFrame? _data;
+        private List<Geometry> _geometries;
+        private Dictionary<AestheticMapping, string> _aesthetics;
 
         #endregion
 
@@ -30,34 +32,58 @@ namespace TidyDataFrame.Plot
 
         public GGraph(DataFrame? data)
         {
-            Geometries = new List<IGeometry>();
-            Aesthetics = new List<IAesthetic>();
+            _geometries = new List<Geometry>();
+            _aesthetics = new Dictionary<AestheticMapping, string>();
 
             _data = data;
         }
 
-        #region Methods
+        #region IGeometry methods
 
-        public GGraph Geometry(IGeometry geometry)
+        public GGraph Geometry(Geometry geometry)
         {
-            throw new NotImplementedException();
+            _geometries.Add(geometry);
+
+            return this;
         }
 
-        public GGraph Aesthestics(IEnumerable<IAesthetic> aesthetics)
+        public bool HasValidAesthetics()
         {
-            throw new NotImplementedException();
+            return _geometries.SelectMany(g => g.RequiredAesthetics).Select(aes => _aesthetics.ContainsKey(aes)).All(x => x);
         }
 
+        #endregion
+
+        #region IAesthetics methods
+        public GGraph Aesthetics(AestheticMapping mapping, string dataColumn)
+        {
+            _aesthetics.Add(mapping, dataColumn);
+
+            return this;
+        }
+
+        public GGraph Aesthetics(Dictionary<AestheticMapping, string> aesthetics)
+        {
+            aesthetics.ToList().ForEach(x => Aesthetics(x.Key, x.Value));
+
+            return this;
+        }
+
+        #endregion
+
+        #region IScale methods
+        // TODO
         public GGraph Scale(Scale scale)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
 
         public Plot Render(IPlotBackend backend)
         {
             throw new NotImplementedException();
         }
 
-        #endregion
     }
 }

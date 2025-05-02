@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace TidyDataFrame.Plot
 {
-    /// <summary>
-    /// Abstract base class for scale definition of an aesthetic
-    /// </summary>
-    public abstract class Scale
+    public class Point : Geometry
     {
+        public override List<AestheticMapping> RequiredAesthetics => [AestheticMapping.XCoord, AestheticMapping.YCoord];
     }
 }
