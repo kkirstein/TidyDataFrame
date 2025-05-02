@@ -12,7 +12,9 @@ namespace TidyDataFrame.Plot
         XCoord,
         YCoord,
         Color,
-
+        Size,
+        Shape,
+        LineType,
     }
 
     /// <summary>

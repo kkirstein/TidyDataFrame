@@ -15,6 +15,7 @@ namespace TidyDataFrame.Plot
         protected DataFrame? _overloadedData;
 
         public abstract List<AestheticMapping> RequiredAesthetics { get; }
+        public abstract List<AestheticMapping> OptionalAesthetics { get; }
 
         public Geometry(DataFrame? overloadedData)
         {
