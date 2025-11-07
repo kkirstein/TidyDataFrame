@@ -9,7 +9,7 @@ namespace TidyDataFrame.Plot
     /// <summary>
     /// Abstract base class to represent a rendered graph aka plot
     /// </summary>
-    public abstract class Plot
+    public interface IPlot
     {
     }
 }

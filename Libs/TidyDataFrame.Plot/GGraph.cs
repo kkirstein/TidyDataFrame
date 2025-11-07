@@ -66,10 +66,6 @@ namespace TidyDataFrame.Plot
             return this;
         }
 
-        #endregion
-
-        #region IScale methods
-        // TODO
         public GGraph Scale(Scale scale)
         {
             throw new NotImplementedException();
@@ -77,7 +73,7 @@ namespace TidyDataFrame.Plot
 
         #endregion
 
-        public Plot Render(IPlotBackend backend)
+        public IPlot Render(IPlotBackend backend)
         {
             throw new NotImplementedException();
         }
