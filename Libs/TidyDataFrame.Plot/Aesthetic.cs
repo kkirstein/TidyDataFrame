@@ -20,11 +20,8 @@ namespace TidyDataFrame.Plot
     /// <summary>
     /// Aestathetics descirbe the mapping of data columns to a geometry property
     /// </summary>
-    public interface IAesthetic<T>
+    public abstract class Aesthetic
     {
-        public T Aesthetics(AestheticMapping mapping, string dataColumn);
-        public T Aesthetics(Dictionary<AestheticMapping, string> aesthetics);
-
         //public void SetScale(Scale scale);
         //public Scale GetScale();
 

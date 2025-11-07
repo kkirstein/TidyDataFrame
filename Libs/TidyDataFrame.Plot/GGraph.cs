@@ -10,7 +10,7 @@ namespace TidyDataFrame.Plot
     /// <summary>
     /// Definition of the graph, as described by the Grammar of Graphics
     /// </summary>
-    public class GGraph : IAesthetic<GGraph>, IGeometry<GGraph>
+    public class GGraph : IGGraph<GGraph>
     {
         #region Properties
 
@@ -38,7 +38,7 @@ namespace TidyDataFrame.Plot
             _data = data;
         }
 
-        #region IGeometry methods
+        #region IGGraph methods
 
         public GGraph Geometry(Geometry geometry)
         {
@@ -52,9 +52,6 @@ namespace TidyDataFrame.Plot
             return _geometries.SelectMany(g => g.RequiredAesthetics).Select(aes => _aesthetics.ContainsKey(aes)).All(x => x);
         }
 
-        #endregion
-
-        #region IAesthetics methods
         public GGraph Aesthetics(AestheticMapping mapping, string dataColumn)
         {
             _aesthetics.Add(mapping, dataColumn);
