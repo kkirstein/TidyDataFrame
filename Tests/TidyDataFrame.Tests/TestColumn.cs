@@ -21,7 +21,7 @@ namespace TidyDataFrame.Tests
             // single column drop
             var df1 = Column.Drop(df, "cyl");
 
-            Assert.AreEqual(df.Columns.Count - 1, df1.Columns.Count);
+            Assert.HasCount(df.Columns.Count - 1, df1.Columns);
 
             var expectedColumnNames = new List<string> {
                 "Column0","mpg","disp","hp","drat","wt","qsec","vs","am","gear","carb"
@@ -32,7 +32,7 @@ namespace TidyDataFrame.Tests
             // multiple column drop
             var df2 = Column.Drop(df, ["mpg", "hp", "vs"]);
 
-            Assert.AreEqual(df.Columns.Count - 3, df2.Columns.Count);
+            Assert.HasCount(df.Columns.Count - 3, df2.Columns);
 
             expectedColumnNames = new List<string> {
                 "Column0","cyl","disp","drat","wt","qsec","am","gear","carb"
@@ -49,7 +49,7 @@ namespace TidyDataFrame.Tests
             var colNames = new List<string> { "cyl", "disp", "wt", "qsec", "am" };
             var df1 = Column.Take(df, colNames);
 
-            Assert.AreEqual(colNames.Count, df1.Columns.Count);
+            Assert.HasCount(colNames.Count, df1.Columns);
 
             var actualColumnNames = df1.Columns.Select(x => x.Name).ToList();
             CollectionAssert.AreEqual(colNames, actualColumnNames);
@@ -129,7 +129,7 @@ namespace TidyDataFrame.Tests
         public void TestDatacolumnUnsupported()
         {
             var data = new List<short>() { 1, 2, 3, 4 };
-            Assert.ThrowsException<InvalidDataTypeException>(() => Column.ToDataFrameColumn(data, "test"));
+            Assert.Throws<InvalidDataTypeException>(() => Column.ToDataFrameColumn(data, "test"));
         }
     }
 }
