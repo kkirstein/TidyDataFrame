@@ -77,6 +77,7 @@ namespace TidyDataFrame
             }
 
             dynamic[] newData = new dynamic[rowCount];
+            //R[] newData = new R[rowCount];
             var aryData1 = data1.ToArray();
             var aryData2 = data2.ToArray();
             for (var idx = 0; idx < rowCount; ++idx)
